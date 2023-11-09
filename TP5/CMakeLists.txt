@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.26)
+project(TP5 C)
+
+set(CMAKE_C_STANDARD 99)
+add_executable(compter_voyelles compter_voyelles.c)
+add_executable(depassement depassement.c)
+add_executable(texte_1 texte_1.c)
+add_executable(texte_2 texte_2.c)
+add_executable(texte_3 texte_3.c)
+add_executable(texte_4 texte_4.c)
+add_executable(chiffrer1 chiffrer1.c)
