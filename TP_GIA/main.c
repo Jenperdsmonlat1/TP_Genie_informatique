@@ -28,8 +28,8 @@ int main(void) {
     fichier = fopen("Reunion.dat", "r");
     if (fichier == NULL) return -1;
     
-    lireCreneaux(fichier, creneaux);
-    afficherEnteteDisponibilites(4, creneaux);
+    uint8_t nombre = lireCreneaux(fichier, creneaux);
+    afficherEnteteDisponibilites(nombre, creneaux);
 
     fclose(fichier);
     return 0;
@@ -52,14 +52,8 @@ participant_t *listerDisponibilites(FILE *fic, long position, size_t *nb_partici
     decoderDisponibilites(CODE_DISPO, disponibilite);
 
     for (uint16_t i = 15; i != 0; i--) {
-
-        printf("%d\n", (int)disponibilite[16]);
+        printf("%d ", disponibilite[i]);
     }
-}
-
-void decoderDisponibilites(uint16_t codeDispo, char tabDispo[16]) {
-
-    for (uint8_t i = 0; i < 16; i++) tabDispo[i] = codeDispo >> i;
 }
 
 void afficherDisponibilites(size_t n1, creneau_t tab_creneaux[], size_t n2, participant_t tab_participants[]) {
@@ -80,4 +74,9 @@ void afficherEnteteDisponibilites(size_t n, creneau_t tab_creneaux[n]) {
     for (i=0 ; i<n ; i++) printf("\t%.8s", tab_creneaux[i].horaire);
     
     putchar('\n');
+}
+
+void decoderDisponibilites(uint16_t codeDispo, char tabDispo[16]) {
+
+    for (uint8_t i = 0; i < 16; i++) tabDispo[i] = ((codeDispo & (1 << 15 - i))) / (1 << 15 - i);
 }
