@@ -6,7 +6,7 @@
 
 typedef struct {
     
-    char jour[9], date[8], horaire[8];
+    char jour[8], date[8], horaire[8];
 } creneau_t;
 
 typedef struct {
